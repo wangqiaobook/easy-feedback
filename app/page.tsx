@@ -1,6 +1,15 @@
+import FeedbackTable from "./_components/feedback-table";
 
-export default function Home() {
+type Props = {
+  searchParams: {
+    pageSize?: string
+    currentPage?: string
+  }
+}
+export default function Home({searchParams}: Props) {
   return (
-    <div>123</div>
+    <div>
+      <FeedbackTable searchParams={searchParams} />
+    </div>
   );
 }

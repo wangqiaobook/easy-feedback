@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import {creatFeedback, Feedback} from "@/lib/fetchers"
+import {creatFeedback} from "@/lib/fetchers"
 
 export async function POST(request: Request) {
   const data = await request.json();

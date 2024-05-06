@@ -4,13 +4,13 @@ import prisma from "@/lib/prisma";
 /**
  * 创建新反馈
  */
-export type Feedback = {
+export type FeedbackProps = {
   type?: string;
   content: string;
   email: string;
   name: string;
 }
-export async function creatFeedback(data:Feedback){
+export async function creatFeedback(data:FeedbackProps){
   try{
     const feedback = await prisma.feedback.create({
       data: {
@@ -26,6 +26,18 @@ export async function creatFeedback(data:Feedback){
   }
 }
 
+export type Feedback = {
+  id:string;
+  type?: string;
+  content: string;
+  email: string;
+  name: string;
+  createdAt: Date;
+}
+export type ResFeedbacks = {
+  data: Feedback[]
+  total: number
+}
 /**
  * 获取反馈
  */
@@ -39,7 +51,8 @@ export async function getFeedbacks(currentPage:number = 1, pageSize:number = 10)
         createdAt: "desc",
       },
     });
-    return feedback;
+    const total = await prisma.feedback.count(); // 获取总数
+    return {data:feedback, total};
   } catch (error) {
     console.error('Error fetching feedback:', error);
     return error;
