@@ -1,3 +1,4 @@
+import cors from "@/lib/cors";
 import { getFeedbacks } from "@/lib/fetchers";
 import { NextResponse } from "next/server";
 
@@ -7,7 +8,10 @@ export async function GET(request: Request) {
   const pageSize = Number(searchParams.get('pageSize') || 10);
 
   const data = await getFeedbacks(currentPage, pageSize);
-  return NextResponse.json({
-    data,
-  });
+  return cors(
+    request,
+    NextResponse.json({
+      data,
+    })
+  );
 }
