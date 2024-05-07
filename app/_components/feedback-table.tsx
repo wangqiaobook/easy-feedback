@@ -29,6 +29,7 @@ const FeedbackTable = async ({searchParams}:Props) => {
           <TableHead>content</TableHead>
           <TableHead className="text-right">createdAt</TableHead>
           <TableHead className="text-right">email</TableHead>
+          <TableHead className="text-right">notes</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -40,6 +41,7 @@ const FeedbackTable = async ({searchParams}:Props) => {
             <TableCell>{item.content}</TableCell>
             <TableCell>{String(item.createdAt)}</TableCell>
             <TableCell className="text-right">{item.email}</TableCell>
+            <TableCell className="text-right">{item.notes}</TableCell>
           </TableRow>
           })
         }

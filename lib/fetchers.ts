@@ -6,19 +6,15 @@ import prisma from "@/lib/prisma";
  */
 export type FeedbackProps = {
   type?: string;
-  content: string;
-  email: string;
-  name: string;
+  content?: string;
+  email?: string;
+  name?: string;
+  notes?: string;
 }
 export async function creatFeedback(data:FeedbackProps){
   try{
     const feedback = await prisma.feedback.create({
-      data: {
-        name: data.name,
-        email: data.email,
-        content: data.content,
-        type: data.type
-      },
+      data,
     });
     return feedback;
   } catch(error){
@@ -29,9 +25,10 @@ export async function creatFeedback(data:FeedbackProps){
 export type Feedback = {
   id:string;
   type?: string;
-  content: string;
-  email: string;
-  name: string;
+  content?: string;
+  email?: string;
+  name?: string;
+  notes?: string;
   createdAt: Date;
 }
 export type ResFeedbacks = {
