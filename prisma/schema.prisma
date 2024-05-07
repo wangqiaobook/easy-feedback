@@ -13,6 +13,7 @@ model Feedback {
   name          String?
   email         String?
   type          String?
+  notes         String?
   content       String?  @db.Text
   createdAt     DateTime @default(now())
 }
